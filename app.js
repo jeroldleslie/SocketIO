@@ -1,14 +1,14 @@
 'use strict'
-var express = require("express")
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+const express = require("express")
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
-var nspChat = io.of('/chat');
-var nspDefault = io.nsps['/'];
+const nspChat = io.of('/chat');
+const nspDefault = io.nsps['/'];
 
-var messageList = [];
-var userList = [];
+let messageList = [];
+let userList = [];
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 io.on('connection', function(socket) {
     console.log('User Connected');
     socket.emit('connected', "Welcom")
-    var addedUser = false;
+    let addedUser = false;
     socket.on('add user', function(data) {
         if (addedUser) return;
         addedUser = true;
@@ -52,7 +52,7 @@ io.on('connection', function(socket) {
     socket.on('disconnect', function() {
         console.log('User Disconnected');
         if (addedUser) {
-            for (var i = 0; i < userList.length; i++) {
+            for (let i = 0; i < userList.length; i++) {
                 if (socket.username === userList[i].username) {
                     userList.splice(i, 1);
                 }
