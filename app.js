@@ -7,8 +7,8 @@ var io = require('socket.io')(server);
 var nspChat = io.of('/chat');
 var nspDefault = io.nsps['/'];
 
-let messageList = [];
-let userList = [];
+var messageList = [];
+var userList = [];
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 io.on('connection', function(socket) {
     console.log('User Connected');
     socket.emit('connected', "Welcom")
-    let addedUser = false;
+    var addedUser = false;
     socket.on('add user', function(data) {
         if (addedUser) return;
         addedUser = true;
@@ -52,7 +52,7 @@ io.on('connection', function(socket) {
     socket.on('disconnect', function() {
         console.log('User Disconnected');
         if (addedUser) {
-            for (let i = 0; i < userList.length; i++) {
+            for (var i = 0; i < userList.length; i++) {
                 if (socket.username === userList[i].username) {
                     userList.splice(i, 1);
                 }
