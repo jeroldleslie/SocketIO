@@ -41,7 +41,7 @@ io.on('connection', function(socket) {
         console.log(data)
         messageList.push(data);
         //socket.to("mamapoona").emit('message', data);
-        socket.emit('message', data);
+        socket.broadcast.emit('message', data);
     })
 
     socket.on('getUsers', function() {
