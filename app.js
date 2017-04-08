@@ -33,7 +33,7 @@ io.on('connection', function(socket) {
 
     //socket.on('join', function(data) {
     // socket.join(data);
-    console.log("Joined to ", JSON.stringify(data));
+    //console.log("Joined to ", JSON.stringify(data));
     //})
 
     socket.on('message', function(data) {
