@@ -36,13 +36,20 @@ io.on('connection', function(socket) {
         //console.log("Joined to ", JSON.stringify(data));
         //})
 
-    socket.on('message', function(data) {
-        //cb(true);
-        console.log(data)
+    // socket.on('message', function(data) {
+    //     //cb(true);
+    //     console.log(data)
+    //     messageList.push(data);
+    //     //socket.to("mamapoona").emit('message', data);
+    //     socket.broadcast.emit('message', data);
+    // })
+
+    socket.on('new message', function(data) {
         messageList.push(data);
-        //socket.to("mamapoona").emit('message', data);
-        socket.broadcast.emit('message', data);
+        console.log("new message", data);
+        socket.broadcast.emit('new message', data);
     })
+
 
     socket.on('getUsers', function() {
         socket.emit('getUsers', userList);
