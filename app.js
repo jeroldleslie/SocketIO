@@ -31,6 +31,10 @@ io.on('connection', function(socket) {
         })
     })
 
+    socket.on('join', function(data) {
+        console.log(JSON.stringify(data));
+    })
+
     socket.on('new message', function(data, cb) {
         cb(true);
         console.log(data)
