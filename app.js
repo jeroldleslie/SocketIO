@@ -36,8 +36,8 @@ io.on('connection', function(socket) {
         console.log("Joined to ", JSON.stringify(data));
     })
 
-    socket.on('message', function(data, cb) {
-        cb(true);
+    socket.on('message', function(data) {
+        //cb(true);
         console.log(data)
         messageList.push(data);
         //socket.to("mamapoona").emit('message', data);
