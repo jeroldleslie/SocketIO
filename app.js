@@ -21,20 +21,20 @@ io.on('connection', function(socket) {
     socket.emit('connected', "Welcom")
     let addedUser = false;
     socket.on('add user', function(data) {
-        if (addedUser) return;
-        addedUser = true;
-        socket.username = data.username;
-        userList.push({ username: data.username });
-        socket.emit('login', { userList: userList })
-        socket.broadcast.emit('user joined', {
-            username: data.username
+            if (addedUser) return;
+            addedUser = true;
+            socket.username = data.username;
+            userList.push({ username: data.username });
+            socket.emit('login', { userList: userList })
+            socket.broadcast.emit('user joined', {
+                username: data.username
+            })
+            console.log(data.username, " joined");
         })
-    })
-
-    //socket.on('join', function(data) {
-    // socket.join(data);
-    //console.log("Joined to ", JSON.stringify(data));
-    //})
+        //socket.on('join', function(data) {
+        // socket.join(data);
+        //console.log("Joined to ", JSON.stringify(data));
+        //})
 
     socket.on('message', function(data) {
         //cb(true);
