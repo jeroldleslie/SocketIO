@@ -32,14 +32,16 @@ io.on('connection', function(socket) {
     })
 
     socket.on('join', function(data) {
-        console.log(JSON.stringify(data));
+        socket.join(data);
+        console.log("Joined to ", JSON.stringify(data));
     })
 
-    socket.on('new message', function(data, cb) {
+    socket.on('message', function(data, cb) {
         cb(true);
         console.log(data)
         messageList.push(data);
-        socket.broadcast.emit('new message', data);
+        socket.broadcast.to("mamapoona").emit('message', data);
+        //socket.broadcast.emit('message', data);
     })
 
     socket.on('getUsers', function() {
