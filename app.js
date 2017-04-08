@@ -40,7 +40,7 @@ io.on('connection', function(socket) {
         cb(true);
         console.log(data)
         messageList.push(data);
-        socket.broadcast.to("mamapoona").emit('message', data);
+        socket.to("mamapoona").emit('message', data);
         //socket.broadcast.emit('message', data);
     })
 
